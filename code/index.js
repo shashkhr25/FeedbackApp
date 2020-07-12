@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
 require('./Models/User');
+require('./Models/Survey');
 require('./services/passport');
 
 mongoose.connect(keys.mongooseURL, {useNewUrlParser: true, useUnifiedTopology: true}).catch(err=>{console.error(err.stack)})
@@ -28,6 +29,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 const Port = process.env.Port || 5000
 app.listen(Port);
